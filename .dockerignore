@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+.github
+
+# 虚拟环境
+venv/
+env/
+
+# Python缓存
+__pycache__
+*.pyc
+*.pyo
+
+# 原始数据
+data/
+*.dvc
+
+# 实验日志
+mlruns/
+
+# 文档配置
+*.md
+*.yml
+
+# IDE
+.idea/
+.vscode/
