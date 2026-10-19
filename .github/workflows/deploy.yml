@@ -1,0 +1,44 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches:
+      - staging    # 合并到staging触发预发布环境构建
+      - main       # 合并到main触发生产环境构建
+
+jobs:
+  build-staging:
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 生成预发布环境 .env 文件
+        run: |
+          cat > .env << EOF
+          DB_URL=${{ secrets.STAGING_DB_URL }}
+          API_KEY=${{ secrets.STAGING_API_KEY }}
+          ENV=staging
+          EOF
+          cat .env
+
+      - name: 构建预发布环境 Docker 镜像
+        run: docker build -t taxi-prediction:staging .
+
+  build-production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 生成生产环境 .env 文件
+        run: |
+          cat > .env << EOF
+          DB_URL=${{ secrets.PROD_DB_URL }}
+          API_KEY=${{ secrets.PROD_API_KEY }}
+          ENV=production
+          EOF
+          cat .env
+
+      - name: 构建生产环境 Docker 镜像
+        run: docker build -t taxi-prediction:production .
