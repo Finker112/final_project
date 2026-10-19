@@ -1,6 +1,7 @@
-import pandas as pd
-import numpy as np
 from datetime import datetime, timedelta
+
+import numpy as np
+import pandas as pd
 
 
 def generate_v1(n_samples=2000):
