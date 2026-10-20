@@ -27,7 +27,7 @@ jobs:
       - name: 运行单元测试
         run: |
           export PYTHONPATH=${{ github.workspace }}
-          python -m pytest tests/ -v
+          py -m pytest tests/ -v
 
       - name: 构建Docker镜像
         run: docker build -t taxi-app .
