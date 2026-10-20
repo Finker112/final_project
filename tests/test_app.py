@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+
+from app.main import app
 from fastapi.testclient import TestClient
 from app.main import app
 
