@@ -1,5 +1,5 @@
-import mlflow.sklearn
 import joblib
+import mlflow.sklearn
 
 # 1. 从 MLflow 运行记录中加载真实模型对象
 RUN_ID = "3c0b0feca5ed4ff9848cfb72aa111689"

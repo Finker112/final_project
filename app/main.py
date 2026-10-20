@@ -1,6 +1,7 @@
-from fastapi import FastAPI
-import joblib
 import os
+
+import joblib
+from fastapi import FastAPI
 
 app = FastAPI(title="出租车行程时间预测API")
 
@@ -11,7 +12,7 @@ MODEL_PATH = os.path.join(BASE_DIR, "ml", "prod_model.joblib")
 # 加载模型
 try:
     model = joblib.load(MODEL_PATH)
-except Exception as e:
+except Exception as e: # noqa: BLE001
     raise RuntimeError(f"模型加载失败：{e}")
 
 

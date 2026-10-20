@@ -1,13 +1,14 @@
 import os
 import subprocess
-import numpy as np
+
 import mlflow
 import mlflow.sklearn
+import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
+import xgboost as xgb
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
-import xgboost as xgb
+from sklearn.model_selection import train_test_split
 
 # ===================== 路径配置 =====================
 # 自动获取项目根目录（脚本在 ml/ 下，上一级就是根目录）
@@ -20,10 +21,11 @@ def get_git_sha():
             ["git", "rev-parse", "HEAD"],
             cwd=BASE_DIR,
             capture_output=True,
-            text=True
+            text=True,
+            check=False
         )
         return result.stdout.strip()
-    except Exception:
+    except Exception: # noqa: BLE001
         return "unknown"
 
 git_sha = get_git_sha()
