@@ -1,6 +1,6 @@
 Dataset Description
 Data Source
-Simulated New York taxi trip dataset for demonstrating the full MLOps workflow.
+Simulated  taxi trip dataset for demonstrating the full MLOps workflow.
 Version Notes
 v1
 Content: Raw dataset with a total of 2000 samples

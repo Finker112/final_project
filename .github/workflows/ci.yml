@@ -24,7 +24,8 @@ jobs:
         run: ruff check .
 
       - name: 运行单元测试
-        run: pytest tests/ -v
-
+        run: |
+           export PYTHONPATH=${{ github.workspace }}
+           python -m pytest tests/ -v
       - name: 构建Docker镜像
         run: docker build -t taxi-app .
